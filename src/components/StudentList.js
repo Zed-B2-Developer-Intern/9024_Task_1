@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { Table, Input, Button, Space, Modal, Form, Select, App } from 'antd'; // Import App here
+import { Table, Input, Button, Space, Modal, Form, Select, App } from 'antd';
 import { SearchOutlined, PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 const { Search } = Input;
 const { Option } = Select;

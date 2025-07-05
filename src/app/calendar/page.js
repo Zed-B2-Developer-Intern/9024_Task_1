@@ -1,24 +1,19 @@
 'use client';
-
 import { Calendar, Select, Radio, Row, Col } from 'antd';
 import moment from 'moment';
 const CalendarPage = () => {
   const onPanelChange = (value, mode) => {
     console.log(value.format('YYYY-MM-DD'), mode);
   };
-
   const headerRender = ({ value, type, onChange, onTypeChange }) => {
     const start = 0;
     const end = 12;
     const monthOptions = [];
-    let current = value.clone();
     const localeData = value.localeData();
     const months = [];
     for (let i = 0; i < 12; i++) {
-      current.month(i);
-      months.push(localeData.monthsShort(current));
+      months.push(localeData.monthsShort(value.clone().month(i)));
     }
-
     for (let i = start; i < end; i++) {
       monthOptions.push(
         <Select.Option key={i} value={i} className="month-item">
@@ -40,12 +35,6 @@ const CalendarPage = () => {
       <div style={{ padding: 8 }}>
         <Row gutter={8} align="middle" justify="space-between">
           <Col>
-            <Radio.Group size="small" onChange={(e) => onTypeChange(e.target.value)} value={type}>
-              <Radio.Button value="month">Month</Radio.Button>
-              <Radio.Button value="year">Year</Radio.Button>
-            </Radio.Group>
-          </Col>
-          <Col>
             <Select
               size="small"
               popupMatchSelectWidth={false}
@@ -63,7 +52,7 @@ const CalendarPage = () => {
             <Select
               size="small"
               popupMatchSelectWidth={false}
-              value={String(month)}
+              value={month}
               onChange={(newMonth) => {
                 const now = value.clone().month(Number(newMonth));
                 onChange(now);
@@ -86,5 +75,4 @@ const CalendarPage = () => {
     </>
   );
 };
-
 export default CalendarPage;

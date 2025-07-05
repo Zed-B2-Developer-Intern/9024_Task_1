@@ -1,8 +1,7 @@
 'use client';
 import React, { useState } from 'react';
-import { Calendar, Badge, Select, Button, Modal, Form, DatePicker, notification, Input } from 'antd';
+import { Calendar, Badge, Select, Button, Modal, Form, DatePicker, notification, Input, Row, Col, Radio } from 'antd'; // Make sure Row, Col, Radio are imported
 import moment from 'moment';
-
 const { Option } = Select;
 const students = [
   { id: '1', name: 'Alice Johnson', rollNo: 'S001' },
@@ -41,7 +40,6 @@ const AttendanceCalendar = () => {
   const [attendanceData, setAttendanceData] = useState(initialAttendance);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [form] = Form.useForm();
-
   const getListData = (value) => {
     const dateString = value.format('YYYY-MM-DD');
     const dayAttendance = attendanceData[dateString];
@@ -59,6 +57,7 @@ const AttendanceCalendar = () => {
     }
     return listData;
   };
+
   const cellRender = (current, info) => {
     if (info.type === 'date') {
       const listData = getListData(current);
@@ -74,10 +73,12 @@ const AttendanceCalendar = () => {
     }
     return info.originNode;
   };
+
   const handleSelectDate = (value) => {
     setSelectedDate(value);
     showModal();
   };
+
   const showModal = () => {
     setIsModalVisible(true);
     form.setFieldsValue({
@@ -97,7 +98,6 @@ const AttendanceCalendar = () => {
       values.attendance.forEach(att => {
         updatedAttendanceForDate[att.rollNo] = att.status;
       });
-
       setAttendanceData({
         ...attendanceData,
         [dateKey]: updatedAttendanceForDate,
@@ -111,18 +111,81 @@ const AttendanceCalendar = () => {
       console.log('Validate Failed:', info);
     });
   };
+  const customHeaderRender = ({ value, type, onChange, onTypeChange }) => {
+    const start = 0;
+    const end = 12;
+    const monthOptions = [];
 
+    const localeData = value.localeData();
+    const months = [];
+    for (let i = 0; i < 12; i++) {
+      months.push(localeData.monthsShort(value.clone().month(i)));
+    }
+    for (let i = start; i < end; i++) {
+      monthOptions.push(
+        <Option key={i} value={i} className="month-item">
+          {months[i]}
+        </Option>,
+      );
+    }
+    const year = value.year();
+    const month = value.month();
+    const options = [];
+    for (let i = year - 10; i < year + 10; i += 1) {
+      options.push(
+        <Option key={i} value={i} className="year-item">
+          {i}
+        </Option>,
+      );
+    }
+    return (
+      <div style={{ padding: 8 }}>
+        <Row gutter={8} align="middle" justify="space-between">
+          <Col>
+            <Select
+              size="small"
+              popupMatchSelectWidth={false}
+              className="my-year-select"
+              onChange={(newYear) => {
+                const now = value.clone().year(newYear);
+                onChange(now);
+              }}
+              value={String(year)}
+            >
+              {options}
+            </Select>
+          </Col>
+          <Col>
+            <Select
+              size="small"
+              popupMatchSelectWidth={false}
+              value={month}
+              onChange={(newMonth) => {
+                const now = value.clone().month(Number(newMonth));
+                onChange(now);
+              }}
+            >
+              {monthOptions}
+            </Select>
+          </Col>
+        </Row>
+      </div>
+    );
+  };
   return (
     <>
       <div style={{ marginBottom: 16 }}>
         <h2 style={{ marginBottom: 0 }}>Attendance Overview</h2>
         <p>Click on a date to mark/view attendance.</p>
       </div>
-      <Calendar onSelect={handleSelectDate} cellRender={cellRender} />
-
+      <Calendar
+        onSelect={handleSelectDate}
+        cellRender={cellRender}
+        headerRender={customHeaderRender}
+      />
       <Modal
         title={`Attendance for ${selectedDate.format('YYYY-MM-DD')}`}
-        open={isModalVisible} 
+        open={isModalVisible}
         onOk={handleOk}
         onCancel={() => setIsModalVisible(false)}
         width={700}
@@ -163,5 +226,4 @@ const AttendanceCalendar = () => {
     </>
   );
 };
-
 export default AttendanceCalendar;
