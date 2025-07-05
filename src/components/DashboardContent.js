@@ -13,7 +13,7 @@ const DashboardContent = () => {
           <Card variant="filled">
             <Statistic
               title="Total Students"
-              value={50} 
+              value={45} 
               prefix={<UserOutlined />}
               valueStyle={{ color: '#3f8600' }}
             />
@@ -23,7 +23,7 @@ const DashboardContent = () => {
           <Card variant="filled">
             <Statistic
               title="Today's Present"
-              value={45}
+              value={40}
               prefix={<CheckCircleOutlined />}
               valueStyle={{ color: '#cf1322' }}
             />
