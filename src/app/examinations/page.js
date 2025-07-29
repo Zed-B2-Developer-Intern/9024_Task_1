@@ -15,9 +15,6 @@ export default function ExaminationsPage() {
           </span>
         }
       />
-      <p style={{ textAlign: 'center', marginTop: 20 }}>
-        You can add examination schedules and results here.
-      </p>
     </>
   );
 }

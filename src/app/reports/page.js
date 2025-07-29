@@ -14,9 +14,6 @@ export default function ReportsPage() {
           </span>
         }
       />
-      <p style={{ textAlign: 'center', marginTop: 20 }}>
-        Generate attendance, performance, and other reports here.
-      </p>
     </>
   );
 }

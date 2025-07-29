@@ -1,4 +1,4 @@
-'use client';
+/*'use client';
 import React from 'react';
 import { Layout as AntdLayout, Menu, theme } from 'antd';
 import {
@@ -85,4 +85,4 @@ const Sidebar = () => {
     </Sider>
   );
 };
-export default Sidebar;
+export default Sidebar;*/

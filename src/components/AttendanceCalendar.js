@@ -23,17 +23,7 @@ const initialAttendance = {
     'S006': 'absent',
     'S007': 'present',
     'S008': 'present',
-  },
-  '2025-07-02': {
-    'S001': 'present',
-    'S002': 'present',
-    'S003': 'absent',
-    'S004': 'present',
-    'S005': 'present',
-    'S006': 'present',
-    'S007': 'absent',
-    'S008': 'present'
-  },
+  }
 };
 const AttendanceCalendar = () => {
   const [selectedDate, setSelectedDate] = useState(moment());
