@@ -95,7 +95,7 @@ const MainLayoutClient = ({ children }) => {
               minHeight: 360,
               background: colorBgContainer,
               borderRadius: 8,
-              boxShadow: '0 2px 8px rgba(0,0,0,0.09)'
+              boxShadow: '0 2px 8px rgba(5, 5, 5, 0.09)'
             }}
           >
             {children}
