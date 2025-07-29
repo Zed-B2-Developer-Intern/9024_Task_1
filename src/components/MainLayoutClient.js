@@ -65,7 +65,7 @@ const MainLayoutClient = ({ children }) => {
         <div className="demo-logo-vertical" style={{
           height: '64px',
           margin: '16px',
-          background: 'rgba(0, 0, 0, 0.06)',
+          background: 'rgba(7, 6, 6, 0.06)',
           borderRadius: '8px',
           display: 'flex',
           justifyContent: 'center',
