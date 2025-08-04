@@ -4,7 +4,7 @@ import { Calendar, Badge, Select, Button, Modal, Form, DatePicker, notification,
 import moment from 'moment';
 const { Option } = Select;
 const students = [
-  { id: '1', name: 'Alice Johnson', rollNo: 'S001' },
+  { id: '1', name: 'Alice John', rollNo: 'S001' },
   { id: '2', name: 'Bob Williams', rollNo: 'S002' },
   { id: '3', name: 'Charlie Brown', rollNo: 'S003' },
   { id: '4', name: 'Diana Prince', rollNo: 'S004' },
